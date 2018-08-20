@@ -7,10 +7,17 @@ import { DragDropContext } from "react-dnd";
 import Switch from 'react-switch';
 import update from 'immutability-helper';
 import Target from "./Target";
+import ItemModal from "./ItemModal";
+import uuid from 'uuid/v1';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles.css";
 
 const initialState = {
   mode: "sort", // delete or sorting
+  itemModal:{
+    visible: false,
+  },
   data: [
     {
       id: 1,
@@ -71,13 +78,21 @@ class App extends React.Component {
   handleItemCreate = (item) => {
     this.setState(update(this.state, {
       data: {
-        $push: [item]
+        $push: [{ id: uuid(), ...item}]
       }
     }));
   }
 
+  handleItemCreateClick = () => {
+    this.setState({
+      itemModal: {
+        visible: true,
+      }
+    });
+  }
+
   render() {
-    const { data, mode } = this.state;
+    const { data, mode, itemModal } = this.state;
 
     const checked = mode === 'sort';
 
@@ -87,6 +102,10 @@ class App extends React.Component {
       <div className="App">
         <h1>React DnD Example ("{modeTitle}")</h1>
         <h3>For mode changing use toggle below</h3>
+        <ItemModal 
+          visible={itemModal.visible}
+          onSubmit={item => this.handleItemCreate(item)}
+         />
         <div className="App-inner">
           <div className="control-panel">
             <button className="refresh-btn" onClick={this.handleRefresh}>Refresh</button>
@@ -97,12 +116,12 @@ class App extends React.Component {
           </div>
           {mode === "delete" && (
             <Fragment>
-              <ItemsList onCreate={this.handleItemCreate} onDrop={this.handleElementDrop} items={data} />
+              <ItemsList onCreate={this.handleItemCreateClick} onDrop={this.handleElementDrop} items={data} />
               <Target />
             </Fragment>
           )}
           {mode === "sort" && (
-            <SortableItemsList onMove={this.moveItem} items={data} />
+            <SortableItemsList onCreate={this.handleItemCreateClick} onMove={this.moveItem} items={data} />
           )}
         </div>
       </div>
