@@ -1,4 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+
+.items-list {
+  display: fles;
+  flex-direction: column;
+}
+
+.items-list-item {
+  display: block;
+  margin: 10px 0;
+  height: 40px;
+  border: 1px solid black;
+  padding: 0;
+  text-align: center;
+  line-height: 2.1;
+}
+
+.items-list-sortable-item {
+  border: 1px dashed gray;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  cursor: "move";
+  background-color: white;
+}
+
+.items-list-sortable-item:first-child {
+  margin-top: 10px;
+  transition: all 0.5s ease;
+}
+
+.items-target {
+  width: 50%;
+  height: 75px;
+  border: 1px solid black;
+  line-height: 4.5;
+  margin: 40px auto;
 }
