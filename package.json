@@ -13,7 +13,8 @@
     "react-dnd": "latest",
     "react-dnd-html5-backend": "5.0.1",
     "react-dom": "16.3.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-switch": "^3.0.4"
   },
   "devDependencies": {},
   "scripts": {

@@ -4,8 +4,10 @@ import ItemsList from "./ItemsList";
 import SortableItemsList from "./SortableItemsList";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
+import Switch from 'react-switch';
 import Target from "./Target";
 import "./styles.css";
+import { spawn } from "child_process";
 const update = require("immutability-helper");
 
 const initialState = {
@@ -59,13 +61,28 @@ class App extends React.Component {
     this.setState(initialState);
   };
 
+  handleSwitchChange = (checked, event) => {
+    this.setState({ 
+      mode: checked ? 'sort' : 'delete',  
+    });
+  };
+
   render() {
     const { data, mode } = this.state;
+
+    const checked = mode === 'sort';
+
     return (
       <div className="App">
         <h1>Hello CodeSandbox</h1>
         <h2>Start editing to see some magic happen!</h2>
-        <button onClick={this.handleRefresh}>Refresh</button>
+        <div className="control-panel">
+          <button className="refresh-btn" onClick={this.handleRefresh}>Refresh</button>
+          <Switch
+            checked={checked}
+            onChange={this.handleSwitchChange}
+          />
+        </div>
         {mode === "delete" && (
           <Fragment>
             <ItemsList onDrop={this.handleElementDrop} items={data} />
