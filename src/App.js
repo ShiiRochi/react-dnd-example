@@ -57,7 +57,9 @@ class App extends React.Component {
   };
 
   handleRefresh = () => {
-    this.setState(initialState);
+    this.setState({
+      data: initialState.data,
+    });
   };
 
   handleSwitchChange = (checked, event) => {
