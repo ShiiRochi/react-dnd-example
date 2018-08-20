@@ -66,6 +66,14 @@ class App extends React.Component {
     });
   };
 
+  handleItemCreate = (item) => {
+    this.setState(update(this.state, {
+      data: {
+        $push: [item]
+      }
+    }));
+  }
+
   render() {
     const { data, mode } = this.state;
 
@@ -87,7 +95,7 @@ class App extends React.Component {
           </div>
           {mode === "delete" && (
             <Fragment>
-              <ItemsList onDrop={this.handleElementDrop} items={data} />
+              <ItemsList onCreate={this.handleItemCreate} onDrop={this.handleElementDrop} items={data} />
               <Target />
             </Fragment>
           )}

@@ -8,9 +8,10 @@ class ItemsList extends React.Component {
     items: []
   };
   render() {
-    const { items, onDrop } = this.props;
+    const { items, onDrop, onCreate } = this.props;
     return (
       <div className="items-list">
+        <div className="items-list-item create-item">Add Item +</div>
         {items.map(item => (
           <Item handleDrop={onDrop} key={item.id} item={item} />
         ))}
@@ -20,7 +21,8 @@ class ItemsList extends React.Component {
 }
 
 ItemsList.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array,
+  onCreate: PropTypes.func,
 };
 
 export default ItemsList;
