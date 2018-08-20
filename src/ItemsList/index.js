@@ -11,7 +11,7 @@ class ItemsList extends React.Component {
     const { items, onDrop, onCreate } = this.props;
     return (
       <div className="items-list">
-        <div className="items-list-item create-item">Add Item +</div>
+        <div onClick={onCreate} className="items-list-item create-item">Add Item +</div>
         {items.map(item => (
           <Item handleDrop={onDrop} key={item.id} item={item} />
         ))}

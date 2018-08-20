@@ -7,10 +7,10 @@ class SortableItemsList extends React.Component {
     items: []
   };
   render() {
-    const { items, onMove } = this.props;
+    const { items, onMove, onCreate } = this.props;
     return (
       <div className="items-list">
-        <div className="items-list-item create-item">Add Item +</div>
+        <div onClick={onCreate} className="items-list-item create-item">Add Item +</div>
         {items.map((item, index) => (
           <SortableItem
             handleMove={onMove}
