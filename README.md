@@ -7,5 +7,5 @@ P.S. Created using CodeSandbox
 P.P.S. I haven't much time to maintain everything, so I will update this code as often as possible.
 
 ## TODOs:
-1. Instructions
-~~1. Toggler in UI, switching mode of lists working~~
+1. Instructions  
+1.~~Toggler in UI, switching mode of lists working~~
